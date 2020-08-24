@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://try_models.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://try_models.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.886275, 0.235294, 0.32549, 1 )
+
+[sub_resource type="SphereMesh" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="try_models" type="MeshInstance" parent="."]
+transform = Transform( 0.456974, 0.559696, -0.691315, -0.66262, -0.304284, -0.684358, -0.593388, 0.770813, 0.231816, -2.36792, 0, -5.48522 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.406274, 0.913751, 0, -0.913751, 0.406274, 0, 190.094, 2.2824 )
+
+[node name="sphere" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.969723, -0.244207, 0, 0.244207, -0.969723, 0, 0, -10.9622 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 12.181, 3.83356, -6.75085 )
