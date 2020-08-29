@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://my3dcontroller.gd" type="Script" id=1]
 [ext_resource path="res://pics/bg_button.jpg" type="Texture" id=2]
 [ext_resource path="res://pics/fg_button.png" type="Texture" id=3]
 [ext_resource path="res://pos_l.gd" type="Script" id=4]
 [ext_resource path="res://main.tscn" type="PackedScene" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
 
 [node name="3d_controller" type="Spatial"]
 
@@ -14,7 +15,6 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="bg_button"]
-position = Vector2( -16, -16 )
 normal = ExtResource( 3 )
 script = ExtResource( 1 )
 
@@ -31,5 +31,19 @@ __meta__ = {
 }
 
 [node name="Spatial" parent="." instance=ExtResource( 5 )]
+
+[node name="cam_rot" type="Spatial" parent="."]
+
+[node name="left" type="TouchScreenButton" parent="cam_rot"]
+position = Vector2( 72.0814, 373.755 )
+normal = ExtResource( 6 )
+
+[node name="right" type="TouchScreenButton" parent="cam_rot"]
+position = Vector2( 232.262, 365.746 )
+normal = ExtResource( 6 )
 [connection signal="pressed" from="bg_button/TouchScreenButton" to="Spatial" method="_on_TouchScreenButton_pressed"]
 [connection signal="released" from="bg_button/TouchScreenButton" to="Spatial" method="_on_TouchScreenButton_released"]
+[connection signal="released" from="cam_rot/left" to="Spatial" method="_on_left_released"]
+[connection signal="released" from="cam_rot/left" to="bg_button/TouchScreenButton" method="_on_left_released"]
+[connection signal="released" from="cam_rot/right" to="Spatial" method="_on_right_released"]
+[connection signal="released" from="cam_rot/right" to="bg_button/TouchScreenButton" method="_on_right_released"]

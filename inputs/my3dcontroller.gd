@@ -12,7 +12,9 @@ var ongoing_drag = -1
 var return_accel = 20
 
 var threshold = 10
-
+var to_process = Vector2(0,0)
+var dir = 0
+var ret_final = Vector2(0,0)
 
 func _process(delta):
 	if ongoing_drag == -1:
@@ -39,5 +41,29 @@ func _input(event):
 
 func get_value():
 	if get_button_pos().length() > threshold:
-		return get_button_pos().normalized() * 4
+		to_process = get_button_pos().normalized() * 4
+		if dir == 0:
+			return to_process
+		elif dir == 1:
+			ret_final.x = to_process.y
+			ret_final.y = -to_process.x
+			return ret_final
+		elif dir == 2:
+			return -to_process
+		elif dir == 3:
+			ret_final.x = -to_process.y
+			ret_final.y = to_process.x
+			return ret_final			
 	return Vector2(0, 0)
+
+
+func _on_left_released():
+	dir = dir - 1
+	if dir == -1:
+		dir = 3 # Replace with function body.
+
+
+func _on_right_released():
+	dir = dir + 1
+	if dir == 4:
+		dir = 0 # Replace with function body.

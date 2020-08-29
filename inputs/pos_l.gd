@@ -13,4 +13,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = str(joy_stk.get_value() * 6)
+	#text = str(joy_stk.get_value() * 6)
+	text = str(Engine.get_frames_per_second())

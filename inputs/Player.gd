@@ -9,8 +9,8 @@ var forward = false
 var right = false
 var left = false
 var back = false
-var limit = 6
-var step = 0.5
+var limit = 4
+var step = 0.2
 var a_drag = 0.7
 
 var pressed_signal = false
@@ -72,10 +72,30 @@ func _integrate_forces(state):
 			state.linear_velocity.z += step
 	
 	if pressed_signal:
-		if but_ref.get_value().x != 0 and but_ref.get_value().y != 0:
-			state.linear_velocity.x = but_ref.get_value().x
-			state.linear_velocity.z = but_ref.get_value().y
+		if but_ref.get_value().x > 0:
+			if state.linear_velocity.x > limit:
+				state.linear_velocity.x = limit
+			else:
+				state.linear_velocity.x += step
+		
+		if but_ref.get_value().x < 0:
+			if state.linear_velocity.x < -limit:
+				state.linear_velocity.x = -limit
+			else:
+				state.linear_velocity.x += -step
 
+		if but_ref.get_value().y > 0:
+			if state.linear_velocity.z > limit:
+				state.linear_velocity.z = limit
+			else:
+				state.linear_velocity.z += step
+		
+		if but_ref.get_value().y < 0:
+			if state.linear_velocity.z < -limit:
+				state.linear_velocity.z = -limit
+			else:
+				state.linear_velocity.z += -step
+				
 func _on_TouchScreenButton_pressed():
 	forward = true # Replace with function body.
 
