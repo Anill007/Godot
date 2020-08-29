@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Inputs"
-run/main_scene="res://main.tscn"
+run/main_scene="res://3d_controller.tscn"
 config/icon="res://icon.png"
 
 [debug]
@@ -25,10 +25,12 @@ settings/stdout/print_fps=true
 
 [display]
 
-window/size/width=1280
-window/size/height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
